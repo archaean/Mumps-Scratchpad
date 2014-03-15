@@ -1,18 +1,21 @@
-#Problem 1
-XADDRCHK
-    read !,"Address:",addr
-    if addr?.E5N do
-    . w !,"VALID ZIP CODE"
-    else  do
-    . w !,"INVALID ZIP CODE
+xproblem1
+	Read !,"Address:",addr
+	If addr?.E5N do
+	. w !,addr," is Valid"
+	Else  do
+	. w !,addr," is invalid"
 
-#Problem 2
-#Use translate
-
-loadmozart
+xloadmozart
 	set ^XA(1)="ONCE UPON A TIME A COMPOSER NAMED MOZART WROTE"
 	set ^XA(2)="THE 'MOZART PIANO CONCERTO NUMBER ONE'. MOZART,"
 	set ^XA(3)="HAPPILY EVER AFTER"
+	set ^XN=3
+
+xproblem2
+	for i=1:1:^XN  do
+	. w x,":BEFORE:",^XA(i),!
+	. set ^XA(i)=$replace(^XA(i),"MOZART","BACH")
+	;. w x,":AFTER:",^XA(i),!
 
 xproblem3
 	for i=$ascii("A"):1:$ascii("Z") do
@@ -29,7 +32,5 @@ xproblem3
 	. set x = $query(@x)
 	. if $length(x)=0 set f=1
 	
-	for i=$ascii("A"):1:$ascii("Z") do
-	. w $char(i),":",xcount(i),!
-
-    
+	for i=$ascii("!"):1:$ascii("~") do ; 33, 126
+	. w $char(i),":",$get(xcount(i),0),!

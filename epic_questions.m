@@ -34,3 +34,31 @@ xproblem3
 	
 	for i=$ascii("!"):1:$ascii("~") do ; 33, 126
 	. w $char(i),":",$get(xcount(i),0),!
+	
+xproblem4
+	kill ^XNAMES
+	set x="start"
+	for  do  quit:x=""
+	. read !,"Enter a name:",x
+	. if x?.A1",".A1" ".A do
+	.. set ^XNAMES(x) = ""
+	. else  do
+	.. if x="" do
+	... quit
+	.. else  do
+	... w !,"Invalid Name, Try format  (LASTNAME,FIRSTNAME INITAL(S)"
+	set key = $order(^XNAMES(""))
+	while (key '= ""){
+		write !,key
+		set key = $order(^XNAMES(key))
+	}
+	
+xproblem5
+	read !,"Enter name:",name
+	set key = $order(^XNAMES(""))
+	while (key '= ""){
+		if (key[name){
+			w !,key
+		}
+		set key = $order(^XNAMES(key))
+	}

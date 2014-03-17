@@ -165,6 +165,8 @@ zr
 	set pattern = "1"""_name_""".E"
 	w !,"List of Matching Names",!,"======================"
 	while (key '= ""){
+		; didn't want to have to do this... but this was the only way
+		; I could get pattern matching to work against a variable
 		set boolstr = "set bool = (key?"_pattern_")"
 		x boolstr
 		if (bool){
@@ -175,5 +177,5 @@ zr
 	w !,"======================"
 zs xproblem5
 ; Load run names and then run name find
-d ^loadxnames
-d ^xproblem5
+; d ^loadxnames
+; d ^xproblem5

@@ -31,7 +31,8 @@ zs xproblem1
 ; originally I had a simple while loop with $replace function
 ; but that had underwhelming results due to lack of context and
 ; the problem's requirement to replace "words" not substrings
-; I employed an O(n) cursor walk to identify words (?.A1P)
+; I employed an O(nm) [n string length and m pattern matching] 
+; cursor walk to identify words (?.A1P)
 ; and replace the word "MOZART" /w "BACH" *after* a word was id-ed
 zr
 	set key = $order(^XA(""))
